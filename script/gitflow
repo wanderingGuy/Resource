@@ -1,0 +1,67 @@
+#!/bin/bash
+ 
+# release/feature/hotfix...
+type=""
+# start publish finish
+action=""
+# branch
+branch="$2"
+
+while [ -n "$1" ]; do # while loop starts
+    case "$1" in
+ 
+    -a) echo "-a option passed" ;;
+ 	
+ 	# feature all
+    -fs) 
+        type="feature"
+        action="start"
+        shift
+        ;;
+    -fp) 
+        type="feature"
+        action="publish"
+        shift
+        ;;
+    -ff) 
+        type="feature"
+        action="finish"
+        shift
+        ;;
+    # feature all
+    -rs) 
+        type="release"
+        action="start"
+        shift
+        ;;
+    -rp) 
+        type="release"
+        action="publish"
+        shift
+        ;;
+    -rf) 
+        type="release"
+        action="finish"
+        shift
+        ;;
+    -hs) 
+        type="hotfix"
+        action="start"
+        shift
+        ;;
+    -hf) 
+        type="hotfix"
+        action="finish"
+        shift
+        ;;
+	# release all
+    *) echo "Option $1 not recognized" ;;
+
+    esac
+ 
+    shift
+ 
+done
+echo "git flow preparing action:$action type: $type branch $branch"
+
+git flow $type $action $branch
