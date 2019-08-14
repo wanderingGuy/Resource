@@ -1,6 +1,8 @@
 #!/bin/bash
  
-# release/feature/hotfix...
+# gitflow简化版指令集
+# 比如git flow feature start <name>，可以换成脚本执行./gitflow -fs <name>。
+
 type=""
 # start publish finish
 action=""
